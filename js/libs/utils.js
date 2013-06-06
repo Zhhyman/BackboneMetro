@@ -64,3 +64,13 @@ var BasicView = Backbone.View.extend({
 	    });;
 	}
 });
+
+// Efecto carousel : http://metroui.org.ua/carousel.php#
+var BasicHomeControl = Backbone.View.extend({
+	changeEffect: '',
+	changeDelay: '',
+	targetName: ''
+	
+	
+	
+});
