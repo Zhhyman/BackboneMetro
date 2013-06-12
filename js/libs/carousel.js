@@ -1,5 +1,9 @@
 /**
- * Carousel - jQuery plugin for MetroUiCss framework
+ * Carousel - based on carousel.js from jQuery plugin for MetroUiCss framework.
+ * 
+ * @TODO
+ * Rehacer el carousel para que se ajuste mas a lo que necesito quitando cosas que sobran como
+ * los controles para pasar de imagen.
  */
 
 (function($) {
@@ -141,6 +145,14 @@
                 pos = {
                     'left': -parentWidth
                 }
+            } else if (plugin.settings.direction === 'top') {
+            	pos = {
+            		'top': parentHeight
+            	}
+            } else if (plugin.settings.direction === 'down') {
+            	pos = {
+            		'top': -parentHeight
+            	}
             }
             return pos;
         };
@@ -158,6 +170,14 @@
                 pos = {
                     'left': parentWidth
                 }
+            } else if (plugin.settings.direction === 'top') {
+            	pos = {
+            		'top': -parentHeight
+            	}
+            } else if (plugin.settings.direction === 'down') {
+            	pos = {
+            		'top': parentHeight
+            	}
             }
             return pos;
         };
@@ -225,10 +245,10 @@
 
             effect = effect || plugin.settings.effect;
             // correct slide direction, used for 'slide' and 'slowdown' effects
-            if ((effect === 'slide' || effect === 'slowdown') && typeof direction !== 'undefined' && direction !== plugin.settings.direction) {
+            if ((effect === 'slide' || effect === 'slowdown') && typeof direction !== 'undefined' && (plugin.settings.direction !== 'left' || plugin.settings.direction !== 'top')) {
                 slideDirection = -1;
             }
-            if (direction === 'left') {
+            if (direction === 'left' || direction === 'top') {
                 delta = -1;
             }
 
@@ -293,7 +313,7 @@
          * slide effect
          */
         var changeSlideSlide = function (outSlide, inSlide, slideDirection) {
-            var unmovedPosition = {'left': 0},
+            var unmovedPosition = {'left': 0, 'top':0},
                 duration = plugin.settings.duration;
 
             if (slideDirection !== -1) {
@@ -312,7 +332,7 @@
          * slowdown slide effect (custom easing 'doubleSqrt')
          */
         var changeSlideSlowdown = function (outSlide, inSlide, slideDirection) {
-            var unmovedPosition = {'left': 0},
+            var unmovedPosition = {'left': 0, 'top':0},
                 options;
 
             options = {
