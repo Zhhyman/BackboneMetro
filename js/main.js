@@ -55,7 +55,7 @@ window.Router = Backbone.Router.extend({
 	stand:new StandMetroVO
 });
 
-tpl.loadTemplates(['homeView','standView','carouselButtonView'], function() {
+tpl.loadTemplates(['homeView','standView','carouselButtonView', 'carouselItemView'], function() {
 	app = new Router();
 	Backbone.history.start();
 })

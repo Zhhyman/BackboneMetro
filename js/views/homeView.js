@@ -19,7 +19,6 @@ var homeView = Backbone.View.extend({
 		this.$el.html(template);
 		this.renderInteractions();
 		this.fadeIn();
-		$()['Carousel']({initAll: true});
 		return this;
 	},
 	
