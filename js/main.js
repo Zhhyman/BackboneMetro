@@ -20,6 +20,8 @@ window.Router = Backbone.Router.extend({
 	loadStand: function(id, zone) {
 		console.log('Loading Stand');
 		
+		this.homeView.fadeOut();
+		
 		// Pedimos el modelo de stand.
 		this.stand = new StandMetroVO();
 		this.stand.entityFairRegistrationId = id;

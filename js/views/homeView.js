@@ -38,7 +38,7 @@ var homeView = Backbone.View.extend({
 	
 	loadInfostand: function() {
 		console.log('Load Infostand called');
-		this.fadeOut();
+		//this.fadeOut();
 		Backbone.history.navigate( "stand/42/1", {trigger:'true'});
 	},
 	

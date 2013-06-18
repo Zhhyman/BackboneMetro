@@ -24,12 +24,17 @@ var carouselButtonView = Backbone.View.extend({
 		_.each(this.collection.list, function(item, index) {
 			console.log('Entity : ' + item.entityName + ' , logo : ' + item.logoUrl + " - " + index);
 			var carouselItemTemplate = _.template(tpl.get('carouselItemView'),{slideId:'slide' + index,logoUrl:item.logoUrl}); 
+//			var carouselItemTemplate = _.template(tpl.get('carouselItemView'),{slideId:'slide' + index,logoUrl:item.logoUrl, standUrl:standUrl}); 
 			carouselTarget.append(carouselItemTemplate);
 		});
 		
 		$()['Carousel']({initAll: true});	// Carousel retocado para desplazamiento vertical.
 		console.log("carousel render");
 		return this;
+	},
+	
+	events : {
+		"click .slide":"logoClicked"
 	},
 	
 	collectionFetchedHandler: function( target ) {
@@ -52,5 +57,20 @@ var carouselButtonView = Backbone.View.extend({
 	
 	collectionError: function() {
 		console.log('Error fetching collection');
+	},
+	
+	logoClicked: function(e) {
+		var tarketKey = "slide";
+		var targetId = e.currentTarget.id;
+		var standIndex = "";
+		var standId = "";
+		
+		if(targetId.search(tarketKey) == 0) {
+			standIndex = targetId.substr(tarketKey.length);
+			standId = this.collection.list[standIndex].entityFairRegistrationId;
+			console.log("CLICK STAND : " + standId);
+			Backbone.history.navigate( "stand/" + standId +"/1", {trigger:'true'});
+		}
 	}
+	
 })
