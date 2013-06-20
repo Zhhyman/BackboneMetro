@@ -15,12 +15,15 @@ var StandView = BasicView.extend({
 	},
 	
 	render:function(standData) {
-		console.log('Rendering Stand View');
-		var backgroundUrl = '/resources/' + standutils.template.getBackground(standData.template, 0);
-		console.log('Background URL : ' + backgroundUrl);
+		var backgroundTemplate = standutils.template.getBackground(standData.template, 0);
+		if(backgroundTemplate.length == 0) {
+			backgroundTemplate = standutils.template.getBackground(standData.template, 1);
+		}
+		var backgroundUrl = '/resources/' + backgroundTemplate;
+		var entityName = standData.entityName.toUpperCase();
 		
 		// Compile the template using underscore
-		var template = _.template( tpl.get('standView'), {backgroundurl: backgroundUrl});
+		var template = _.template( tpl.get('standView'), {backgroundurl: backgroundUrl, entityName: entityName});
 
 		// Load the compiled HTML into the Backbone "el"
 		this.$el.html(template);
