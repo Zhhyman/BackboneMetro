@@ -158,6 +158,7 @@ ul{
 }
 .demo-wrapper{
   background:url("../images/1.png");
+/*  background:url("../images/home_bw.jpg"); */
   background-size:cover;
   padding:4em .5em; 
   width:100%; 
@@ -304,6 +305,9 @@ ul{
 .todos-thumb-span{
   display:block;
   margin-top:1.5em;
+  float:none;
+  margin-left:none;
+  min-height:none;
 }
 .todos-thumb:hover p{
   margin-top:-2.7em;
@@ -458,4 +462,9 @@ ul{
   .col3{margin-right: 0;}
   .col1{margin-left:2em;}
   
+}
+
+
+.mainParent{
+	position:relative;
 }
